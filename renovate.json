@@ -3,9 +3,8 @@
     "config:base",
      "group:jsTestMonMajor",
      "group:linters",
-     ":maintainLockFilesWeekly",
-     ":prHourlyLimitNone",
-     ":automergeMinor"
+     ":maintainLockFilesMonthly",
+     ":prHourlyLimitNone"
   ],
   "travis": { "enabled": true },
   "node": {
@@ -13,7 +12,17 @@
    },
   "ignoreDeps": ["nodemailer"],
   "ignorePaths": ["core/server/lib/members", "core/test"],
+  "separateMinorPatch": true,
+  "patch": {
+    "automerge": true,
+    "automergeType": "branch"
+  },
   "packageRules": [
+    {
+      "depTypeList": ["devDependencies"],
+      "automerge": true,
+      "automergeType": "branch"
+    },
     {
       "groupName": "grunt + plugins",
       "packagePatterns": ["^grunt"]
